@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Projekt.Models;
+using Projekt.CustomFilters;
 
 namespace Projekt.Controllers
 {
@@ -36,6 +37,7 @@ namespace Projekt.Controllers
         }
 
         // GET: Lekcja/Create
+        [AuthLog(Roles = "Pracownik")]
         public ActionResult Create()
         {
             return View();
