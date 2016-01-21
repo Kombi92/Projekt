@@ -4,10 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Uczniowe</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Dodaj Ucznia", "Create")
+    @Html.ActionLink("Pokaż wszystkie", "Index")
+    @Html.ActionLink("Sortuj po nazwisku", "SortByNazwisko")
 </p>
 <table class="table">
     <tr>

@@ -19,6 +19,13 @@ namespace Projekt.Controllers
         {
             return View(db.Uczniowie.ToList());
         }
+        public ActionResult SortByNazwisko()
+        {
+            var uczniowie = from u in db.Uczniowie
+                           orderby u.Nazwisko ascending
+                           select u;
+            return View(uczniowie);
+        }
 
         // GET: Uczen/Details/5
         public ActionResult Details(int? id)

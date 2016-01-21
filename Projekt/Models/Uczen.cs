@@ -23,10 +23,6 @@ namespace Projekt.Models
         public string Stopien { get; set; }
         public string Preferencje { get; set; }
 
-        [Key]
-        [ForeignKey("LekcjaID")]
-        public uint LekcjaID { get; set; }
-
         public virtual Lekcja Lekcja { get; set; }
     }
 
