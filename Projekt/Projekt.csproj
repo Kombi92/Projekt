@@ -265,6 +265,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Uczen\SortByNazwisko.cshtml" />
     <Content Include="Views\Shared\_UczenItem.cshtml" />
+    <Content Include="App_Code\Helpers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
