@@ -6,7 +6,7 @@ using Projekt.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Projekt.CustomFilters;
 
-namespace ftransp.Controllers
+namespace Projekt.Controllers
 {
     public class RoleController : Controller
     {
@@ -16,8 +16,6 @@ namespace ftransp.Controllers
         {
             context = new ApplicationDbContext();
         }
-
-
 
         /// <summary>
         /// Get All Roles

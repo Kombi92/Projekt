@@ -37,7 +37,7 @@ namespace Projekt.Controllers
         }
 
         // GET: Lekcja/Create
-        [AuthLog(Roles = "Pracownik")]
+        
         public ActionResult Create()
         {
             return View();
