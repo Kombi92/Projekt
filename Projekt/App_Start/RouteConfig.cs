@@ -13,6 +13,18 @@ namespace Projekt
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Dodaj Ucznia", "Dodaj Ucznia", new
+            {
+                controller = "Uczen",
+                action = "Create"
+            });
+
+            routes.MapRoute("Edycja Ucznia", "Edycja Ucznia", new
+            {
+                controller = "Uczen",
+                action = "Edit"
+            });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

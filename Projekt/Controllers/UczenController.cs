@@ -12,17 +12,17 @@ namespace Projekt.Controllers
 {
     public class UczenController : Controller
     {
-        private UczenLekcjaContext.SzkolaDBContext db = new UczenLekcjaContext.SzkolaDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Uczen
         public ActionResult Index()
         {
-            return View(db.Uczniowie.ToList());
+            return View(db.Uczens.ToList());
         }
         public ActionResult SortByNazwisko()
         {
-            var uczniowie = from u in db.Uczniowie
-                           orderby u.Nazwisko ascending
+            var uczniowie = from u in db.Uczens
+                            orderby u.Nazwisko ascending
                            select u;
             return View(uczniowie);
         }
@@ -34,7 +34,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Uczen uczen = db.Uczniowie.Find(id);
+            Uczen uczen = db.Uczens.Find(id);
             if (uczen == null)
             {
                 return HttpNotFound();
@@ -59,7 +59,7 @@ namespace Projekt.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Uczniowie.Add(uczen);
+                db.Uczens.Add(uczen);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -75,7 +75,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Uczen uczen = db.Uczniowie.Find(id);
+            Uczen uczen = db.Uczens.Find(id);
             if (uczen == null)
             {
                 return HttpNotFound();
@@ -108,7 +108,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Uczen uczen = db.Uczniowie.Find(id);
+            Uczen uczen = db.Uczens.Find(id);
             if (uczen == null)
             {
                 return HttpNotFound();
@@ -122,8 +122,8 @@ namespace Projekt.Controllers
         [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Uczen uczen = db.Uczniowie.Find(id);
-            db.Uczniowie.Remove(uczen);
+            Uczen uczen = db.Uczens.Find(id);
+            db.Uczens.Remove(uczen);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

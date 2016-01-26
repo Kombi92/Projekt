@@ -1,12 +1,13 @@
 namespace Projekt.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Projekt.Models.ApplicationDbContext>
     {
@@ -17,39 +18,52 @@ namespace Projekt.Migrations
 
         protected override void Seed(Projekt.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            SeedRoles(context);
+            SeedUsers(context);
+        }
+        private void SeedRoles(ApplicationDbContext context)
+        {
+            var roleManager = new RoleManager<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>(new RoleStore<IdentityRole>());
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
 
-            AddUserAndRole(context);
+            if (!roleManager.RoleExists("Pracownik"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Pracownik";
+                roleManager.Create(role);
+            }
         }
 
-        bool AddUserAndRole(ApplicationDbContext context)
+        private void SeedUsers(ApplicationDbContext context)
         {
-            IdentityResult ir;
-            var rm = new RoleManager<IdentityRole>
-                (new RoleStore<IdentityRole>(context));
-            ir = rm.Create(new IdentityRole("Admin"));
-            var um = new UserManager<ApplicationUser>(
-                new UserStore<ApplicationUser>(context));
-            var user = new ApplicationUser()
+            //  var store = new UserStore<User>(context);
+            var store = new UserStore<ApplicationUser>(context);
+            var manager = new UserManager<ApplicationUser>(store);
+            
+
+            if (!context.Users.Any(u => u.UserName == "Marek"))
             {
-                UserName = "admin@wp.com",
-            };
-            ir = um.Create(user, "admin321");
-            if (ir.Succeeded == false)
-                return ir.Succeeded;
-            ir = um.AddToRole(user.Id, "Admin");
-            return ir.Succeeded;
+                var user = new ApplicationUser { UserName = "marek@wp.pl" };
+                var adminresult = manager.Create(user, "lol");
+
+                if (adminresult.Succeeded)
+                    manager.AddToRole(user.Id, "Pracownik");
+            }
+
+            if (!context.Users.Any(u => u.UserName == "Admin"))
+            {
+                var user = new ApplicationUser { UserName = "admin@admin.pl" };
+                var adminresult = manager.Create(user, "adminadmin");
+
+                if (adminresult.Succeeded)
+                    manager.AddToRole(user.Id, "Admin");
+            }
         }
     }
 }

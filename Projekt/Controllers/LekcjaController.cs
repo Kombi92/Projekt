@@ -13,12 +13,12 @@ namespace Projekt.Controllers
 {
     public class LekcjaController : Controller
     {
-        private UczenLekcjaContext.SzkolaDBContext db = new UczenLekcjaContext.SzkolaDBContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Lekcja
         public ActionResult Index()
         {
-            return View(db.Lekcje.ToList());
+            return View(db.Lekcjas.ToList());
         }
 
         // GET: Lekcja/Details/5
@@ -28,7 +28,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekcja lekcja = db.Lekcje.Find(id);
+            Lekcja lekcja = db.Lekcjas.Find(id);
             if (lekcja == null)
             {
                 return HttpNotFound();
@@ -52,7 +52,7 @@ namespace Projekt.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Lekcje.Add(lekcja);
+                db.Lekcjas.Add(lekcja);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -67,7 +67,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekcja lekcja = db.Lekcje.Find(id);
+            Lekcja lekcja = db.Lekcjas.Find(id);
             if (lekcja == null)
             {
                 return HttpNotFound();
@@ -98,7 +98,7 @@ namespace Projekt.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Lekcja lekcja = db.Lekcje.Find(id);
+            Lekcja lekcja = db.Lekcjas.Find(id);
             if (lekcja == null)
             {
                 return HttpNotFound();
@@ -111,8 +111,8 @@ namespace Projekt.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Lekcja lekcja = db.Lekcje.Find(id);
-            db.Lekcje.Remove(lekcja);
+            Lekcja lekcja = db.Lekcjas.Find(id);
+            db.Lekcjas.Remove(lekcja);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
