@@ -13,15 +13,27 @@ namespace Projekt
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Dodaj Ucznia", "Dodaj Ucznia", new
+            routes.MapRoute("DodajUcznia", "DodajUcznia", new
             {
                 controller = "Uczen",
                 action = "Create"
             });
 
-            routes.MapRoute("Edycja Ucznia", "Edycja Ucznia", new
+            routes.MapRoute("EdycjaUcznia", "EdycjaUcznia", new
             {
                 controller = "Uczen",
+                action = "Edit"
+            });
+
+            routes.MapRoute("DodajLekcje", "DodajLekcje", new
+            {
+                controller = "Lekcja",
+                action = "Create"
+            });
+
+            routes.MapRoute("EdytujLekcje", "EdytujLekcje", new
+            {
+                controller = "Lekcja",
                 action = "Edit"
             });
 
