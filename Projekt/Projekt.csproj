@@ -177,17 +177,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201601202343303_InitialCreate.cs" />
-    <Compile Include="Migrations\201601202343303_InitialCreate.Designer.cs">
-      <DependentUpon>201601202343303_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601211945524_NowyUczen.cs" />
-    <Compile Include="Migrations\201601211945524_NowyUczen.Designer.cs">
-      <DependentUpon>201601211945524_NowyUczen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201601221344389_AppDB.cs" />
-    <Compile Include="Migrations\201601221344389_AppDB.Designer.cs">
-      <DependentUpon>201601221344389_AppDB.cs</DependentUpon>
+    <Compile Include="Migrations\201601260249083_initial.cs" />
+    <Compile Include="Migrations\201601260249083_initial.Designer.cs">
+      <DependentUpon>201601260249083_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -276,6 +268,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -286,14 +279,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201601202343303_InitialCreate.resx">
-      <DependentUpon>201601202343303_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601211945524_NowyUczen.resx">
-      <DependentUpon>201601211945524_NowyUczen.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201601221344389_AppDB.resx">
-      <DependentUpon>201601221344389_AppDB.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201601260249083_initial.resx">
+      <DependentUpon>201601260249083_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

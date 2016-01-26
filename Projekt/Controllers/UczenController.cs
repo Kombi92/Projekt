@@ -43,6 +43,7 @@ namespace Projekt.Controllers
         }
 
         // GET: Uczen/Create
+        [Authorize(Roles = "Admin" )]
         public ActionResult Create()
         {
             return View();
@@ -53,6 +54,7 @@ namespace Projekt.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "ID,Imie,Nazwisko,DataZapisu,Stopien,Preferencje")] Uczen uczen)
         {
             if (ModelState.IsValid)
@@ -66,6 +68,7 @@ namespace Projekt.Controllers
         }
 
         // GET: Uczen/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +88,7 @@ namespace Projekt.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "ID,Imie,Nazwisko,DataZapisu,Stopien,Preferencje")] Uczen uczen)
         {
             if (ModelState.IsValid)
@@ -97,6 +101,7 @@ namespace Projekt.Controllers
         }
 
         // GET: Uczen/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -114,6 +119,7 @@ namespace Projekt.Controllers
         // POST: Uczen/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Uczen uczen = db.Uczniowie.Find(id);
